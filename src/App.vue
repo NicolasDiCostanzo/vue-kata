@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import { ref } from 'vue';
+import ButtonBanner from './components/ButtonBanner.vue';
+import GameBoard from './components/GameBoard.vue';
+
+let isPlaying = ref<boolean>(false);
+
 </script>
 
 <template>
-  <HelloWorld msg="Hello Vite + Vue 3 + TypeScript" />
+  <div class="wrapper">
+    <ButtonBanner :is-playing="isPlaying" @toggle-play-state="isPlaying = $event"></ButtonBanner>
+    <GameBoard :is-playing="isPlaying"></GameBoard>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  width: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>
